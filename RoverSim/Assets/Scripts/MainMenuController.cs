@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class MainMenuController : MonoBehaviour
     public void clickStartButton()
     {
         Debug.Log("Starting the simulation...");
+        SceneManager.LoadScene("NavigationScene");
     }
 
     // Handle the event when clicking the Quit button
