@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask playerMask;
     private bool jumpKeyPressed;
     private float horizontalInput;
+    private float verticalInput;
     private Rigidbody rigidbodyComponent;
 
     // Start is called before the first frame update
@@ -25,11 +26,13 @@ public class Player : MonoBehaviour
         }
 
         horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
     }
 
     private void FixedUpdate()
     {
-        rigidbodyComponent.velocity = new Vector3(horizontalInput*2.5f, rigidbodyComponent.velocity.y, 0);
+        rigidbodyComponent.velocity = new Vector3(horizontalInput*2.5f, rigidbodyComponent.velocity.y, verticalInput*2.5f);
+
 
         if (Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length < 2)
         {
