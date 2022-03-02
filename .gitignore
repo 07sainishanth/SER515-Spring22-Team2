@@ -11,3 +11,5 @@ RoverInterface/Logs/
 RoverInterface/Packages/
 RoverInterface/Temp/
 RoverInterface/UserSettings/
+
+*.DS_Store
