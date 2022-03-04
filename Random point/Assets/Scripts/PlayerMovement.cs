@@ -11,15 +11,15 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
      rb = GetComponent<Rigidbody>();
-    
     }
 
     // Update is called once per frame
     void Update()
     {
-        float horizantalInput = Input.GetAxis("Horizantal");
+         float horizantalInput = Input.GetAxis("Horizontal");
          float verticallInput = Input.GetAxis("Vertical");
-         rb.velocity = new Vector3(horizantalInput * 5f,rb.velocity.y, verticallInput * 5f);
+
+         rb.velocity = new Vector3(horizantalInput*10f, rb.velocity.y, verticallInput*10f);
         
          if (Input.GetButtonDown("Jump"))
          {
