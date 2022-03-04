@@ -45,15 +45,20 @@ public class FloorBuilder : MonoBehaviour
 
         northWallPos = new Vector3(0.0f, 4.0f, 5 * EnvironmentSettings.scaleZ + 1.0f);
         northWall.transform.position = northWallPos;
+        northWall.GetComponent<Rigidbody>().mass = 10 * EnvironmentSettings.scaleX * 8.0f * 2.0f;
+
 
         eastWallPos = new Vector3(5 * EnvironmentSettings.scaleX + 1.0f, 4.0f, 0.0f);
         eastWall.transform.position = eastWallPos;
+        eastWall.GetComponent<Rigidbody>().mass = 2.0f * 8.0f * 10 * EnvironmentSettings.scaleZ + 64.0f;
 
         southWallPos = new Vector3(0.0f, 4.0f, -5 * EnvironmentSettings.scaleZ - 1.0f);
         southWall.transform.position = southWallPos;
+        southWall.GetComponent<Rigidbody>().mass = 10 * EnvironmentSettings.scaleX * 8.0f * 2.0f;
 
         westWallPos = new Vector3(-5 * EnvironmentSettings.scaleX - 1.0f, 4.0f, 0.0f);
         westWall.transform.position = westWallPos;
+        westWall.GetComponent<Rigidbody>().mass = 2.0f * 8.0f * EnvironmentSettings.scaleZ + 64.0f;
     }
 
     // Update is called once per frame

@@ -18,9 +18,9 @@ public class EnvironmentSettings : MonoBehaviour
     // This method is used for setting the scale based on the value of the slider.
     public static void setScale(float v)
     {
-        scaleX = BASE_VALUE + v * Random.Range(1, 4);
+        scaleX = BASE_VALUE + (float) System.Math.Round(v) * Random.Range(1, 5);
         Debug.Log("X-scale: " + scaleX);
-        scaleZ = BASE_VALUE + v * Random.Range(1, 4);
+        scaleZ = BASE_VALUE + (float) System.Math.Round(v) * Random.Range(1, 5);
         Debug.Log("Z-scale: " + scaleZ);
     }
 }
