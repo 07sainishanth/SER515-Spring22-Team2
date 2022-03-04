@@ -16,7 +16,7 @@ public class EnvironmentSettings : MonoBehaviour
     public static float scaleZ = BASE_VALUE;
     public static float spaceObjectCount = 4;
     public static int pyramidCount = 1;
-    public static int largeBoulderCount = 2;
+    public static int largeBoulderCount = 1;
     public static int colossalBoulderCount = 1;
     public static int spaceMonolithCount = 1;
     public static int meteorCount = 1;

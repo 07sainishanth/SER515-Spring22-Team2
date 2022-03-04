@@ -13,6 +13,8 @@ public class CameraController : MonoBehaviour
     // Right button: 1
     // Middle button: 2
 
+    public bool skyCameraActive;
+
     float rotateSpeed = 5.0f;
     float scrollSpeed = 2.0f;
 
