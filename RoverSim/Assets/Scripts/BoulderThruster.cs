@@ -34,7 +34,7 @@ public class BoulderThruster : MonoBehaviour
                 float xPosition = Random.Range(-1.0f, 1.0f) * (5 * EnvironmentSettings.scaleX - 2.0f);
                 startPosition = new Vector3(xPosition, 20.0f, 5 * EnvironmentSettings.scaleX + 1.0f);
                 transform.localPosition = startPosition;
-                forceDirection = new Vector3(velocityFactor * Mathf.Sin(angle), 0.0f, -velocityFactor * (1 - Mathf.Abs(Mathf.Sin(angle))));
+                forceDirection = new Vector3(velocityFactor * Mathf.Sin(angle), 0.0f, velocityFactor * (1 - Mathf.Abs(Mathf.Sin(angle))));
                 break;
             case ("East"):
                 zPosition = Random.Range(-1.0f, 1.0f) * (5 * EnvironmentSettings.scaleZ - 2.0f);
@@ -46,7 +46,7 @@ public class BoulderThruster : MonoBehaviour
                 xPosition = Random.Range(-1.0f, 1.0f) * (5 * EnvironmentSettings.scaleX - 2.0f);
                 startPosition = new Vector3(xPosition, 20.0f, -5 * EnvironmentSettings.scaleX + 1.0f);
                 transform.localPosition = startPosition;
-                forceDirection = new Vector3(velocityFactor * Mathf.Sin(angle), 0.0f, velocityFactor * (1 - Mathf.Abs(Mathf.Sin(angle))));
+                forceDirection = new Vector3(velocityFactor * Mathf.Sin(angle), 0.0f, -velocityFactor * (1 - Mathf.Abs(Mathf.Sin(angle))));
                 break;
         }
         rBody.AddForce(forceDirection, ForceMode.VelocityChange);

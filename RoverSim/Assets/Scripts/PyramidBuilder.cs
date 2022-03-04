@@ -14,11 +14,14 @@ public class PyramidBuilder : MonoBehaviour
     // South defined as negative Z direction
     // West defined as negative X direction
 
-    public GameObject block;
-    public int levels;
+    public static GameObject block;
+    public static int levels;
+    public static float xPos;
+    public static float yPos;
+    public static float zPos;
 
-    // Start is called before the first frame update
-    void Start()
+    // This method is used to build a pyramid out of blocks.
+    public static void buildPyramid()
     {
         Quaternion rot = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
         Vector3 pos;
@@ -26,12 +29,12 @@ public class PyramidBuilder : MonoBehaviour
         // Build each level of the pyramid except for top level
         for (int i = 1; i <= levels - 1; i++)
         {
-            float x = -0.5f * (levels - i);
-            float y = 0.5f + i - 1;
-            float z = 0.5f * (levels - i);
+            float x = xPos - 0.5f * (levels - i);
+            float y = yPos + 0.5f + i - 1;
+            float z = zPos + 0.5f * (levels - i);
 
             // Set blocks on the north side
-            while (x <= 0.5f * (levels - i))
+            while (x <= xPos + 0.5f * (levels - i))
             {
                 pos = new Vector3(x, y, z);
                 Instantiate(block, pos, rot).SetActive(true);
@@ -41,7 +44,7 @@ public class PyramidBuilder : MonoBehaviour
             z -= 1;
 
             // Set blocks on the east side
-            while (z >= -0.5f * (levels - i))
+            while (z >= zPos - 0.5f * (levels - i))
             {
                 pos = new Vector3(x, y, z);
                 Instantiate(block, pos, rot).SetActive(true);
@@ -51,7 +54,7 @@ public class PyramidBuilder : MonoBehaviour
             x -= 1;
 
             // set blocks on the south side
-            while (x >= -0.5f * (levels - i))
+            while (x >= xPos - 0.5f * (levels - i))
             {
                 pos = new Vector3(x, y, z);
                 Instantiate(block, pos, rot).SetActive(true);
@@ -62,7 +65,7 @@ public class PyramidBuilder : MonoBehaviour
             z += 1;
 
             // Set blocks on the west side
-            while (z <= 0.5f * (levels - i) - 1)
+            while (z <= zPos + 0.5f * (levels - i) - 1)
             {
                 pos = new Vector3(x, y, z);
                 Instantiate(block, pos, rot).SetActive(true);
@@ -71,7 +74,7 @@ public class PyramidBuilder : MonoBehaviour
         }
 
         // Set the top block
-        pos = new Vector3(0.0f, 0.5f + levels - 1, 0.0f);
+        pos = new Vector3(xPos, yPos + 0.5f + levels - 1, zPos);
         Instantiate(block, pos, rot).SetActive(true);
     }
 
