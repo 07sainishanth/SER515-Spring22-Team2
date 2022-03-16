@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Control_wheels : MonoBehaviour
 {   public Transform[] wheels;
-    public float motorPower= 150.0f;
+    public float motorPower= 1500.0f;
     public float maxTurn = 25.0f;
 
-    float instantePower = 0.0f;
+    float instantePower = 150.0f;
     float breake = 0.0f;
     float wheelTurn =0.0f;
     Rigidbody myRigidbody;
@@ -40,11 +40,14 @@ public class Control_wheels : MonoBehaviour
         wheels[1].localEulerAngles.z);
 
         //spin wheels
-        wheels[0].Rotate(0, -getCollider(0).rpm/60*360*Time.deltaTime,0);
-        wheels[1].Rotate(0, -getCollider(1).rpm/60*360*Time.deltaTime,0);
-        wheels[2].Rotate(0, -getCollider(2).rpm/60*360*Time.deltaTime,0);
-        wheels[3].Rotate(0, -getCollider(3).rpm/60*360*Time.deltaTime,0);
-
+       // wheels[0].Rotate(0, -getCollider(0).rpm/60*360*100*Time.deltaTime,0);
+       // wheels[1].Rotate(0, -getCollider(1).rpm/60*360*100*Time.deltaTime,0);
+       // wheels[2].Rotate(0, -getCollider(2).rpm/60*360*100*Time.deltaTime,0);
+       // wheels[3].Rotate(0, -getCollider(3).rpm/60*360*100*Time.deltaTime,0);
+        wheels[0].Rotate(getCollider(0).rpm, 0 / 60 * 360 * Time.deltaTime, 0);
+        wheels[1].Rotate(getCollider(1).rpm, 0 / 60 * 360 * Time.deltaTime, 0);
+        wheels[2].Rotate(getCollider(2).rpm, 0 / 60 * 360 * Time.deltaTime, 0);
+        wheels[3].Rotate(getCollider(3).rpm, 0 / 60 * 360 * Time.deltaTime, 0);
         //breakes
         if(breake > 0.0f)
         {
