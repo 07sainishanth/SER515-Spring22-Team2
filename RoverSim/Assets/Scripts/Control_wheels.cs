@@ -15,28 +15,28 @@ public class Control_wheels : MonoBehaviour
     void Start()
     {
         myRigidbody = this.GetComponent<Rigidbody>();
-        myRigidbody.centerOfMass = new Vector(0,0.0f,0.0f);
+        myRigidbody.centerOfMass = new Vector3(0,0.0f,0.0f);
 
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        instantePower = Input.GetExis("Vertical") * motorPower * Time.deltaTime;
-        wheelTurn = Input.GetExis("Horizontal")*maxTurn;
-        breake = Input.getKey("space") ? myRigidbody.mass*0.1f:0.0f;
+        instantePower = Input.GetAxis("Vertical") * motorPower * Time.deltaTime;
+        wheelTurn = Input.GetAxis("Horizontal") * maxTurn;
+        breake = Input.GetKey(KeyCode.A) ? myRigidbody.mass*0.1f:0.0f;
 
         //turn collider
-        getCollider(0).streerAngle = wheelTurn;
-        getCollider(1).streerAngle = wheelTurn;
+        getCollider(0).steerAngle = wheelTurn;
+        getCollider(1).steerAngle = wheelTurn;
 
         //turn wheels
         wheels[0].localEulerAngles = new Vector3(wheels[0].localEulerAngles.x,
-        getCollider(0).streerAngle -wheels[0].localEulerAngles.z +90,
+        getCollider(0).steerAngle -wheels[0].localEulerAngles.z +90,
         wheels[0].localEulerAngles.z);
 
         wheels[1].localEulerAngles = new Vector3(wheels[1].localEulerAngles.x,
-        getCollider(1).streerAngle -wheels[1].localEulerAngles.z +90,
+        getCollider(1).steerAngle -wheels[1].localEulerAngles.z +90,
         wheels[1].localEulerAngles.z);
 
         //spin wheels
@@ -48,25 +48,25 @@ public class Control_wheels : MonoBehaviour
         //breakes
         if(breake > 0.0f)
         {
-            getCollider(0).breakTorque = breake;
-            getCollider(1).breakTorque = breake;
-            getCollider(2).breakTorque = breake;
-            getCollider(3).breakTorque = breake;
+            getCollider(0).brakeTorque = breake;
+            getCollider(1).brakeTorque = breake;
+            getCollider(2).brakeTorque = breake;
+            getCollider(3).brakeTorque = breake;
             getCollider(2).motorTorque = 0.0f;
             getCollider(3).motorTorque = 0.0f;
         }
         else{
-            getCollider(0).breakTorque = 0.0f;
-            getCollider(1).breakTorque = 0.0f;
-            getCollider(2).breakTorque = 0.0f;
-            getCollider(3).breakTorque = 0.0f;
+            getCollider(0).brakeTorque = 0.0f;
+            getCollider(1).brakeTorque = 0.0f;
+            getCollider(2).brakeTorque = 0.0f;
+            getCollider(3).brakeTorque = 0.0f;
             getCollider(2).motorTorque = instantePower;
             getCollider(3).motorTorque = instantePower;
 
         }
 
     }
-    WheelColiider getCollider(int n){
+    WheelCollider getCollider(int n){
         return wheels[n].gameObject.GetComponent<WheelCollider>();
 
     }
