@@ -13,3 +13,5 @@ RoverInterface/Temp/
 RoverInterface/UserSettings/
 
 *.DS_Store
+
+__pycache__/
