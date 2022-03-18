@@ -13,3 +13,4 @@ RoverInterface/Temp/
 RoverInterface/UserSettings/
 
 *.DS_Store
+*.pyc
