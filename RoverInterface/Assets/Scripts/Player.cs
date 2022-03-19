@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
     private Rigidbody rigidbodyComponent;
 
 
+    private Vector2 turn;
+    [SerializeField] private Transform cam;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +23,11 @@ public class Player : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {        
+    {
+        // Rotate camera
+        turn.x += Input.GetAxis("Mouse X");
+        rigidbodyComponent.rotation = Quaternion.Euler(0, turn.x, 0);
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             jumpKeyPressed = true;
