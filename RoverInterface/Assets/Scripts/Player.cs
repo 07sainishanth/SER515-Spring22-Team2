@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     private float verticalInput;
     private Rigidbody rigidbodyComponent;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,7 @@ public class Player : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             jumpKeyPressed = true;
@@ -32,7 +33,6 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         rigidbodyComponent.velocity = new Vector3(horizontalInput*2.5f, rigidbodyComponent.velocity.y, verticalInput*2.5f);
-
 
         if (Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length < 2)
         {
