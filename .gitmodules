@@ -1,0 +1,3 @@
+[submodule "SLAM-ROS/ros2_docker/ROS-TCP-Endpoint"]
+	path = SLAM-ROS/ros2_docker/ROS-TCP-Endpoint
+	url = https://github.com/Unity-Technologies/ROS-TCP-Endpoint.git
