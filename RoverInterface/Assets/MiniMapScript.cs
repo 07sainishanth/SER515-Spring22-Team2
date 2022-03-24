@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class MiniMapScript : MonoBehaviour
 {
-   public transform player;
-
-    void LateUpdate()
+    // Start is called before the first frame update
+    void Start()
     {
-        Vector3 newPosition = player.position;
-        newPosition.y=transform.position.y;
-        transform.position = new position;
-
-        transform.rotation = Quaternon.Euler(90f,player.eulerAngles.y, 0f);
+        
     }
 
     // Update is called once per frame
