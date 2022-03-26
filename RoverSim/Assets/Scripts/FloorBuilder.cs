@@ -16,6 +16,12 @@ public class FloorBuilder : MonoBehaviour
     public GameObject eastWall;
     public GameObject southWall;
     public GameObject westWall;
+    public GameObject water;
+    public GameObject subfloor;
+    public GameObject northSubWall;
+    public GameObject eastSubWall;
+    public GameObject southSubWall;
+    public GameObject westSubWall;
 
     Vector3 floorScale;
     Vector3 sandScale;
@@ -41,70 +47,67 @@ public class FloorBuilder : MonoBehaviour
         Quaternion rot = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
         Vector3 quarterScale = new Vector3(0.2f, 1.0f, 0.2f);
 
-        float xStart = -4 * 0.5f * xTiles - 2;
-        float zStart = 4 * 0.5f * zTiles + 2;
+        float xStart = -xTiles + 1;
+        float zStart = zTiles - 1;
         
-        for (int z = zTiles; z > 0; z--)
+        for (int z = 0; z < zTiles; z++)
         {
-            for (int x = 1; x <= xTiles; x++)
+            for (int x = 0; x < xTiles; x++)
             {
-                float xPos = xStart + x * 4;
-                float zPos = zStart - z * 4;
-                Vector3 pos = new Vector3(xPos, 0.0f, zPos);
-                Instantiate(floor, pos, rot).SetActive(true);
-                Instantiate(sand, pos, rot).SetActive(true);
+                // Don't place floor or sand tiles in north-western region of map
+                if (!(z == 4 || z == 5 || z == 6 || z == 7) || !(x == 4 || x == 5 || x == 6 || x ==7))
+                {
+                    float xPos = xStart + x * 2;
+                    float zPos = zStart - z * 2;
+                    Vector3 pos = new Vector3(xPos, 0.0f, zPos);
+                    Instantiate(floor, pos, rot).SetActive(true);
+                    pos = new Vector3(xPos, 0.1f, zPos);
+                    Instantiate(sand, pos, rot).SetActive(true);
+                }
             }
         }
 
         // Place floor tiles underneath north perimeter wall
-        xStart = -2 * xTiles - 3;
-        zStart = 2 * zTiles + 1;
-        for (int x = 2; x < 2 * xTiles + 2; x++) 
+        xStart = -xTiles - 1;
+        zStart = zTiles + 1;
+        for (int x = 0; x < xTiles + 2; x++) 
         {
             float xPos = xStart + x * 2;
             float zPos = zStart;
             Vector3 pos = new Vector3(xPos, 0.0f, zPos);
-            GameObject quarterFloor = Instantiate(floor, pos, rot);
-            quarterFloor.transform.localScale = quarterScale;
-            quarterFloor.SetActive(true);
+            Instantiate(floor, pos, rot).SetActive(true);
         }
 
         // Place floor tiles underneath east perimeter wall
-        xStart = 2 * xTiles + 1;
-        for (int z = 0; z < 2 * zTiles + 2; z++)
+        xStart = xTiles + 1;
+        for (int z = 0; z < zTiles + 2; z++)
         {
             float xPos = xStart;
             float zPos = zStart - z * 2;
             Vector3 pos = new Vector3(xPos, 0.0f, zPos);
-            GameObject quarterFloor = Instantiate(floor, pos, rot);
-            quarterFloor.transform.localScale = quarterScale;
-            quarterFloor.SetActive(true);
+            Instantiate(floor, pos, rot).SetActive(true);
         }
 
         // Place floor tiles underneath south perimeter wall
-        xStart = 2 * xTiles + 3;
-        zStart = -2 * zTiles - 1;
-        for (int x = 2; x < 2 * xTiles + 2; x++)
+        xStart = xTiles - 1;
+        zStart = -zTiles - 1;
+        for (int x = 0; x < xTiles + 1; x++)
         {
             float xPos = xStart - x * 2;
             float zPos = zStart;
             Vector3 pos = new Vector3(xPos, 0.0f, zPos);
-            GameObject quarterFloor = Instantiate(floor, pos, rot);
-            quarterFloor.transform.localScale = quarterScale;
-            quarterFloor.SetActive(true);
+            Instantiate(floor, pos, rot).SetActive(true);
         }
 
         // Place floor tiles underneath west perimeter wall
-        xStart = -2 * xTiles - 1;
-        zStart = -2 * zTiles;
-        for (int z = 0; z < 2 * zTiles + 2; z++)
+        xStart = -xTiles - 1;
+        zStart = -zTiles + 1;
+        for (int z = 0; z < zTiles; z++)
         {
             float xPos = xStart;
-            float zPos = zStart + z * 2 - 1;
+            float zPos = zStart + z * 2;
             Vector3 pos = new Vector3(xPos, 0.0f, zPos);
-            GameObject quarterFloor = Instantiate(floor, pos, rot);
-            quarterFloor.transform.localScale = quarterScale;
-            quarterFloor.SetActive(true);
+            Instantiate(floor, pos, rot).SetActive(true);
         }
 
 
@@ -132,6 +135,14 @@ public class FloorBuilder : MonoBehaviour
         westWallPos = new Vector3(-5 * EnvironmentSettings.scaleX - 1.0f, 4.0f, 0.0f);
         westWall.transform.position = westWallPos;
         westWall.GetComponent<Rigidbody>().mass = 2.0f * 8.0f * EnvironmentSettings.scaleZ + 64.0f;
+
+        // Build the water feature
+        Instantiate(water, new Vector3(-xTiles + 12.0f, 0.1f, zTiles - 12.0f), rot).SetActive(true);
+        Instantiate(subfloor, new Vector3(-xTiles + 12.0f, -8.0f, zTiles - 12.0f), rot).SetActive(true);
+        Instantiate(northSubWall, new Vector3(-xTiles + 12.0f, -4.0f, zTiles - 8.0f), new Quaternion(-1.0f, 0.0f, 0.0f, 1.0f)).SetActive(true);
+        Instantiate(eastSubWall, new Vector3(-xTiles + 16.0f, -4.0f, zTiles - 12.0f), new Quaternion(0.0f, 0.0f, 1.0f, 1.0f)).SetActive(true);
+        Instantiate(southSubWall, new Vector3(-xTiles + 12.0f, -4.0f, zTiles - 16.0f), new Quaternion(1.0f, 0.0f, 0.0f, 1.0f)).SetActive(true);
+        Instantiate(westSubWall, new Vector3(-xTiles + 8.0f, -4.0f, zTiles - 12.0f), new Quaternion(0.0f, 0.0f, -1.0f, 1.0f)).SetActive(true);
     }
 
     // Update is called once per frame
