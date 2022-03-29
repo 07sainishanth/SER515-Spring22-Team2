@@ -1,0 +1,1 @@
+docker build -t completerost2mar29a23:v2 .
