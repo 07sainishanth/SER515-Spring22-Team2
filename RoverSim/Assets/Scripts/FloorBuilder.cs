@@ -22,6 +22,7 @@ public class FloorBuilder : MonoBehaviour
     public GameObject eastSubWall;
     public GameObject southSubWall;
     public GameObject westSubWall;
+    public GameObject waterFeature;
 
     Vector3 floorScale;
     Vector3 sandScale;
@@ -49,13 +50,28 @@ public class FloorBuilder : MonoBehaviour
 
         float xStart = -xTiles + 1;
         float zStart = zTiles - 1;
-        
+
+        int[] waterX = new int[EnvironmentSettings.waterCount];
+        int[] waterZ = new int[EnvironmentSettings.waterCount];
+        for (int i = 0; i < EnvironmentSettings.waterCount; i++)
+        {
+            waterX[i] = (int) Mathf.Round(Random.Range(0.0f, xTiles - 4.0f));
+            waterZ[i] = (int) Mathf.Round(Random.Range(0.0f, zTiles - 4.0f));
+        }
+
         for (int z = 0; z < zTiles; z++)
         {
             for (int x = 0; x < xTiles; x++)
             {
-                // Don't place floor or sand tiles in north-western region of map
-                if (!(z == 4 || z == 5 || z == 6 || z == 7) || !(x == 4 || x == 5 || x == 6 || x ==7))
+                // Check if x and z are a water space
+                bool waterSpace = false;
+                for (int i = 0; i < waterX.Length; i++)
+                {
+                    waterSpace |= (x == waterX[i] | x == waterX[i] + 1 | x == waterX[i] + 2 | x == waterX[i] + 3) 
+                        && (z == waterZ[i] | z == waterZ[i] + 1 | z == waterZ[i] + 2 | z == waterZ[i] + 3);
+                }
+
+                if (!waterSpace) // Add sand if not water space
                 {
                     float xPos = xStart + x * 2;
                     float zPos = zStart - z * 2;
@@ -136,13 +152,20 @@ public class FloorBuilder : MonoBehaviour
         westWall.transform.position = westWallPos;
         westWall.GetComponent<Rigidbody>().mass = 2.0f * 8.0f * EnvironmentSettings.scaleZ + 64.0f;
 
-        // Build the water feature
-        Instantiate(water, new Vector3(-xTiles + 12.0f, 0.1f, zTiles - 12.0f), rot).SetActive(true);
-        Instantiate(subfloor, new Vector3(-xTiles + 12.0f, -8.0f, zTiles - 12.0f), rot).SetActive(true);
-        Instantiate(northSubWall, new Vector3(-xTiles + 12.0f, -4.0f, zTiles - 8.0f), new Quaternion(-1.0f, 0.0f, 0.0f, 1.0f)).SetActive(true);
-        Instantiate(eastSubWall, new Vector3(-xTiles + 16.0f, -4.0f, zTiles - 12.0f), new Quaternion(0.0f, 0.0f, 1.0f, 1.0f)).SetActive(true);
-        Instantiate(southSubWall, new Vector3(-xTiles + 12.0f, -4.0f, zTiles - 16.0f), new Quaternion(1.0f, 0.0f, 0.0f, 1.0f)).SetActive(true);
-        Instantiate(westSubWall, new Vector3(-xTiles + 8.0f, -4.0f, zTiles - 12.0f), new Quaternion(0.0f, 0.0f, -1.0f, 1.0f)).SetActive(true);
+        // Build the water features
+        xStart = -xTiles + 1;
+        zStart = zTiles - 1;
+        for (int i = 0; i < waterX.Length; i++)
+        {
+            float xPos = xStart + waterX[i] * 2;
+            float zPos = zStart - waterZ[i] * 2;
+            Instantiate(water, new Vector3(xPos + 3.0f, 0.1f, zPos - 3.0f), rot).SetActive(true);
+            Instantiate(subfloor, new Vector3(xPos + 3.0f, -8.0f, zPos - 3.0f), rot).SetActive(true);
+            Instantiate(northSubWall, new Vector3(xPos + 3.0f, -4.0f, zPos + 1.0f), new Quaternion(-1.0f, 0.0f, 0.0f, 1.0f)).SetActive(true);
+            Instantiate(eastSubWall, new Vector3(xPos + 7.0f, -4.0f, zPos - 3.0f), new Quaternion(0.0f, 0.0f, 1.0f, 1.0f)).SetActive(true);
+            Instantiate(southSubWall, new Vector3(xPos + 3.0f, -4.0f, zPos - 7.0f), new Quaternion(1.0f, 0.0f, 0.0f, 1.0f)).SetActive(true);
+            Instantiate(westSubWall, new Vector3(xPos - 1.0f, -4.0f, zPos - 3.0f), new Quaternion(0.0f, 0.0f, -1.0f, 1.0f)).SetActive(true);
+        }
     }
 
     // Update is called once per frame
