@@ -1,0 +1,1 @@
+docker build -t completerost2:v2 .
