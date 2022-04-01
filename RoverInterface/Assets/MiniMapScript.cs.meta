@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<<< HEAD:RoverInterface/Assets/Scripts/CameraChange.cs.meta
+guid: 62481fef7d0b3c649bd7e5781f8d7b40
+========
 guid: cfbfc33ef7172a44e935b2b3cffa4884
+>>>>>>>> c49fadb2331d088d0bd52c4cd0c15a6bf09dfea3:RoverInterface/Assets/MiniMapScript.cs.meta
+=======
+guid: cfbfc33ef7172a44e935b2b3cffa4884
+>>>>>>> origin/dev
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
