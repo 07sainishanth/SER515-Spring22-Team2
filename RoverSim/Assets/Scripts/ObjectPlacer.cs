@@ -14,6 +14,7 @@ public class ObjectPlacer : MonoBehaviour
     public GameObject largeBoulder;
     public GameObject colossalBoulder;
     public GameObject spaceMonolith;
+    public GameObject rover;
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +40,7 @@ public class ObjectPlacer : MonoBehaviour
             PyramidBuilder.zPos = Random.Range(-5 * EnvironmentSettings.scaleZ, 5 * EnvironmentSettings.scaleZ);
             PyramidBuilder.buildPyramid();
         }
-
+        
         for (int i = 0; i < EnvironmentSettings.largeBoulderCount; i++)
         {
             int rnd = (int) Random.Range(1, 5);
@@ -103,6 +104,15 @@ public class ObjectPlacer : MonoBehaviour
             float zPos = Random.Range(-5 * EnvironmentSettings.scaleZ, 5 * EnvironmentSettings.scaleZ);
             pos = new Vector3(xPos, yPos, zPos);
             Instantiate(spaceMonolith, pos, rot).SetActive(true);
+        }
+
+        for (int i = 0; i < EnvironmentSettings.pyramidCount; i++)
+        {
+            float xPos = Random.Range(-5 * EnvironmentSettings.scaleX, 5 * EnvironmentSettings.scaleX);
+            float yPos = 0.0f;
+            float zPos = Random.Range(-5 * EnvironmentSettings.scaleZ, 5 * EnvironmentSettings.scaleZ);
+            pos = new Vector3(xPos, yPos, zPos);
+            Instantiate(rover, pos, rot).SetActive(true);
         }
     }
 
