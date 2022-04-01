@@ -14,6 +14,7 @@ public class MiniMapScript : MonoBehaviour
 
         transform.rotation = Quaternon.Euler(90f,player.eulerAngles.y, 0f);
     }
+
     // Update is called once per frame
     void Update()
     {

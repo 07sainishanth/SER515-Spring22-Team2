@@ -1,0 +1,20 @@
+# Unity
+RoverSim/Library/
+RoverSim/Logs/
+RoverSim/Packages/
+RoverSim/Temp/
+RoverSim/UserSettings/
+
+RoverInterface/Library/
+RoverInterface/obj/
+RoverInterface/Logs/
+RoverInterface/Packages/
+RoverInterface/Temp/
+RoverInterface/UserSettings/
+RoverInterface/[Ll]ogs/
+
+
+*.DS_Store
+*.pyc
+__pycache__/
+
