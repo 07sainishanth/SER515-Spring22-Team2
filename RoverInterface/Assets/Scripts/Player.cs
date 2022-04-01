@@ -11,15 +11,29 @@ public class Player : MonoBehaviour
     private float verticalInput;
     private Rigidbody rigidbodyComponent;
 
+
+    private Vector2 turn;
+    [SerializeField] private Transform cam;
+
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         rigidbodyComponent = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        turn.x += Input.GetAxis("Mouse X");
+        rigidbodyComponent.rotation = Quaternion.Euler(0, turn.x, 0);
+
+        Vector3 camF = cam.forward;
+        Vector3 camR = cam.right;
+
+        camF = camF.normalized;
+        camR = camR.normalized;
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             jumpKeyPressed = true;
@@ -27,12 +41,14 @@ public class Player : MonoBehaviour
 
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
+
+        rigidbodyComponent.position += (camF* verticalInput + camR * horizontalInput) * Time.deltaTime * 5;
+
     }
 
     private void FixedUpdate()
     {
-        rigidbodyComponent.velocity = new Vector3(horizontalInput*2.5f, rigidbodyComponent.velocity.y, verticalInput*2.5f);
-
+        rigidbodyComponent.velocity = new Vector3(rigidbodyComponent.velocity.x, rigidbodyComponent.velocity.y, rigidbodyComponent.velocity.z);
 
         if (Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length < 2)
         {
