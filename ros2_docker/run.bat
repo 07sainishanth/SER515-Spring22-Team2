@@ -1,1 +1,1 @@
-docker build -t completerost2mar29a24:v2 .
+docker run -it --rm -p 6080:80 -p 10000:10000 --shm-size=1024m completerost2mar29a24:v2
