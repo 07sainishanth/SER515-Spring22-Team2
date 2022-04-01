@@ -11,6 +11,8 @@ RoverInterface/Logs/
 RoverInterface/Packages/
 RoverInterface/Temp/
 RoverInterface/UserSettings/
+RoverInterface/[Ll]ogs/
+
 
 *.DS_Store
 *.pyc
