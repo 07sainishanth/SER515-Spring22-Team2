@@ -7,14 +7,14 @@ public class Control_wheels : MonoBehaviour
     public float motorPower= 1500.0f;
     public float maxTurn = 25.0f;
 
-    float instantePower = 150.0f;
+    float instantePower = 0.0f;
     float breake = 0.0f;
     float wheelTurn =0.0f;
     Rigidbody myRigidbody;
     // Start is called before the first frame update
     void Start()
     {
-        myRigidbody = this.GetComponent<Rigidbody>();
+        /*myRigidbody = this.GetComponent<Rigidbody>();
         myRigidbody.centerOfMass = new Vector3(0,0.0f,0.0f);
 
     }
@@ -47,7 +47,7 @@ public class Control_wheels : MonoBehaviour
         wheels[0].Rotate(getCollider(0).rpm, 0 / 60 * 360 * Time.deltaTime, 0);
         wheels[1].Rotate(getCollider(1).rpm, 0 / 60 * 360 * Time.deltaTime, 0);
         wheels[2].Rotate(getCollider(2).rpm, 0 / 60 * 360 * Time.deltaTime, 0);
-        wheels[3].Rotate(getCollider(3).rpm, 0 / 60 * 360 * Time.deltaTime, 0);
+        wheels[3].Rotate(getCollider().rpm, 0 / 60 * 360 * Time.deltaTime, 0);
         //breakes
         if(breake > 0.0f)
         {
@@ -72,5 +72,6 @@ public class Control_wheels : MonoBehaviour
     WheelCollider getCollider(int n){
         return wheels[n].gameObject.GetComponent<WheelCollider>();
 
+    }*/
     }
 }

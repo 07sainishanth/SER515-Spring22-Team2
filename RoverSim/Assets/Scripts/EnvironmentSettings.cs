@@ -20,6 +20,7 @@ public class EnvironmentSettings : MonoBehaviour
     public static int colossalBoulderCount = 1;
     public static int spaceMonolithCount = 1;
     public static int meteorCount = 1;
+    public static int waterCount = 1;
 
     // This method is used for setting the scale based on the value of the slider.
     public static void setScale(float v)
@@ -40,7 +41,8 @@ public class EnvironmentSettings : MonoBehaviour
         pyramidCount = (int) (v * Random.Range(1, 2) * scaleX * scaleZ / 240);
         largeBoulderCount = (int) (v * Random.Range(1, 3) * scaleX * scaleZ / 240);
         colossalBoulderCount = (int) (v * Random.Range(1, 2) * scaleX * scaleZ / 480);
-        spaceMonolithCount = (int) (v * Random.Range(1, 2) * scaleX * scaleZ / 320);
+        spaceMonolithCount = (int)(v * Random.Range(1, 2) * scaleX * scaleZ / 320);
         meteorCount = 0; // Implement later
+        waterCount = (int)(v * Random.Range(1, 2) * scaleX * scaleZ / 480);
     }
 }
