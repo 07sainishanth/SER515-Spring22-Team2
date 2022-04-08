@@ -13,15 +13,21 @@ public class MovementController : MonoBehaviour
     public GameObject roverCamera;
     public GameObject cameraRig;
     public GameObject rover;
+    public GameObject oneText;
+    public GameObject twoText;
+    public GameObject threeText;
+    public GameObject boomText;
 
     Rigidbody roverRigidbody;
     bool destroy;
+    int frameCounter;
 
     // Start is called before the first frame update
     void Start()
     {
         roverRigidbody = rover.GetComponent<Rigidbody>();
         destroy = false;
+        frameCounter = 0;
     }
 
     // Update is called once per frame
@@ -75,12 +81,41 @@ public class MovementController : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.X)) // Detonate pyramid destroyer :D
                 {
-                    rover.transform.localScale *= 25.0f;
-                    Destroy(rover, 0.05f);
+                    Vector3 zero = new Vector3(0.0f, 0.0f, 0.0f);
+                    roverRigidbody.velocity = zero;
+                    roverRigidbody.angularVelocity = zero;
                     destroy = true;
+                    threeText.SetActive(true);
                     roverCamera.SetActive(false);
                     mainCamera.SetActive(true);
                 }
+            }
+        }
+        else // Pyramid destroyer weapon engaged
+        {
+            frameCounter++;
+            if (frameCounter == 20)
+            {
+                threeText.SetActive(false);
+                twoText.SetActive(true);
+            }
+            else if (frameCounter == 40)
+            {
+                twoText.SetActive(false);
+                oneText.SetActive(true);
+            }
+            else if (frameCounter == 60)
+            {
+                oneText.SetActive(false);
+                boomText.SetActive(true);
+                roverRigidbody.mass = 1562500.0f;
+                rover.transform.localScale *= 25.0f;
+                Destroy(rover, 0.075f);
+                destroy = true;
+            }
+            else if (frameCounter == 80)
+            {
+                boomText.SetActive(false);
             }
         }
     }
