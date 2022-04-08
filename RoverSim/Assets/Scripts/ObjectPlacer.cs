@@ -15,6 +15,9 @@ public class ObjectPlacer : MonoBehaviour
     public GameObject colossalBoulder;
     public GameObject spaceMonolith;
     public GameObject rover;
+    public GameObject navText;
+
+    int frameCounter;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +32,7 @@ public class ObjectPlacer : MonoBehaviour
             float zPos = Random.Range(-5 * EnvironmentSettings.scaleZ, 5 * EnvironmentSettings.scaleZ);
             pos = new Vector3(xPos, yPos, zPos);
             Instantiate(spaceObject, pos, rot).SetActive(true);
+            frameCounter = 0;
         }
 
         PyramidBuilder.block = block;
@@ -106,7 +110,7 @@ public class ObjectPlacer : MonoBehaviour
             Instantiate(spaceMonolith, pos, rot).SetActive(true);
         }
 
-        for (int i = 0; i < EnvironmentSettings.pyramidCount; i++)
+        //Place the rover
         {
             float xPos = Random.Range(-5 * EnvironmentSettings.scaleX, 5 * EnvironmentSettings.scaleX);
             float yPos = 0.0f;
@@ -119,6 +123,13 @@ public class ObjectPlacer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (frameCounter < 180)
+        {
+            frameCounter++;
+                if (frameCounter == 180)
+            {
+                navText.SetActive(false);
+            }
+        }
     }
 }
