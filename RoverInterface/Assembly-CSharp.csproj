@@ -270,9 +270,6 @@
  <Reference Include="UnityEditor.UnityConnectModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.26f1/Editor/Data/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll</HintPath>
  </Reference>
- <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
- <HintPath>C:/Users/Hirwa Modi/Desktop/SER515-Spring22-Team2/RoverInterface/Library/PackageCache/com.unity.visualscripting@1.7.6/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
- </Reference>
  <Reference Include="Newtonsoft.Json">
  <HintPath>C:/Users/Hirwa Modi/Desktop/SER515-Spring22-Team2/RoverInterface/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll</HintPath>
  </Reference>
@@ -621,14 +618,8 @@
  <Reference Include="System.Xml.Serialization">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.26f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
  </Reference>
- <Reference Include="Unity.VisualScripting.Flow.Editor">
- <HintPath>C:/Users/Hirwa Modi/Desktop/SER515-Spring22-Team2/RoverInterface/Library/ScriptAssemblies/Unity.VisualScripting.Flow.Editor.dll</HintPath>
- </Reference>
  <Reference Include="Unity.VSCode.Editor">
  <HintPath>C:/Users/Hirwa Modi/Desktop/SER515-Spring22-Team2/RoverInterface/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.VisualScripting.Shared.Editor">
- <HintPath>C:/Users/Hirwa Modi/Desktop/SER515-Spring22-Team2/RoverInterface/Library/ScriptAssemblies/Unity.VisualScripting.Shared.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/Users/Hirwa Modi/Desktop/SER515-Spring22-Team2/RoverInterface/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
@@ -642,20 +633,8 @@
  <Reference Include="Unity.Timeline">
  <HintPath>C:/Users/Hirwa Modi/Desktop/SER515-Spring22-Team2/RoverInterface/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
- <Reference Include="Unity.VisualScripting.Core.Editor">
- <HintPath>C:/Users/Hirwa Modi/Desktop/SER515-Spring22-Team2/RoverInterface/Library/ScriptAssemblies/Unity.VisualScripting.Core.Editor.dll</HintPath>
- </Reference>
  <Reference Include="Unity.TextMeshPro">
  <HintPath>C:/Users/Hirwa Modi/Desktop/SER515-Spring22-Team2/RoverInterface/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
- </Reference>
- <Reference Include="Unity.VisualScripting.State.Editor">
- <HintPath>C:/Users/Hirwa Modi/Desktop/SER515-Spring22-Team2/RoverInterface/Library/ScriptAssemblies/Unity.VisualScripting.State.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
- <HintPath>C:/Users/Hirwa Modi/Desktop/SER515-Spring22-Team2/RoverInterface/Library/ScriptAssemblies/Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.VisualScripting.Flow">
- <HintPath>C:/Users/Hirwa Modi/Desktop/SER515-Spring22-Team2/RoverInterface/Library/ScriptAssemblies/Unity.VisualScripting.Flow.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>C:/Users/Hirwa Modi/Desktop/SER515-Spring22-Team2/RoverInterface/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
@@ -668,12 +647,6 @@
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Users/Hirwa Modi/Desktop/SER515-Spring22-Team2/RoverInterface/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="Unity.VisualScripting.State">
- <HintPath>C:/Users/Hirwa Modi/Desktop/SER515-Spring22-Team2/RoverInterface/Library/ScriptAssemblies/Unity.VisualScripting.State.dll</HintPath>
- </Reference>
- <Reference Include="Unity.VisualScripting.Core">
- <HintPath>C:/Users/Hirwa Modi/Desktop/SER515-Spring22-Team2/RoverInterface/Library/ScriptAssemblies/Unity.VisualScripting.Core.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
