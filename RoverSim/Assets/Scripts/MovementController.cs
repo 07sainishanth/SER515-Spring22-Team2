@@ -16,7 +16,6 @@ public class MovementController : MonoBehaviour
     public GameObject oneText;
     public GameObject twoText;
     public GameObject threeText;
-    public GameObject boomText;
 
     Rigidbody roverRigidbody;
     bool destroy;
@@ -74,9 +73,9 @@ public class MovementController : MonoBehaviour
                     rover.transform.Translate(-10 * cameraRig.transform.forward * Time.deltaTime, Space.World);
                 }
 
-                if (Input.GetKeyDown(KeyCode.Space) && rover.transform.localPosition.y <= 1.5) // Thrust upwards from ground
+                if (Input.GetKeyDown(KeyCode.Space)) // Thrust upwards
                 {
-                    roverRigidbody.AddForce(cameraRig.transform.up * 16000.0f, ForceMode.Impulse);
+                    roverRigidbody.AddForce(cameraRig.transform.up * 12000.0f, ForceMode.Impulse);
                 }
 
                 if (Input.GetKeyDown(KeyCode.X)) // Detonate pyramid destroyer :D
@@ -88,6 +87,13 @@ public class MovementController : MonoBehaviour
                     threeText.SetActive(true);
                     roverCamera.SetActive(false);
                     mainCamera.SetActive(true);
+                }
+
+                if (Input.GetKeyDown(KeyCode.Q)) // Stop moving
+                {
+                    Vector3 zero = new Vector3(0.0f, 0.0f, 0.0f);
+                    roverRigidbody.velocity = zero;
+                    roverRigidbody.angularVelocity = zero;
                 }
             }
         }
@@ -107,15 +113,10 @@ public class MovementController : MonoBehaviour
             else if (frameCounter == 60)
             {
                 oneText.SetActive(false);
-                boomText.SetActive(true);
                 roverRigidbody.mass = 1562500.0f;
                 rover.transform.localScale *= 25.0f;
                 Destroy(rover, 0.075f);
                 destroy = true;
-            }
-            else if (frameCounter == 80)
-            {
-                boomText.SetActive(false);
             }
         }
     }

@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class MainMenuController : MonoBehaviour
 {
     public GameObject mainMenu;
     public GameObject optionsMenu;
+    public Slider mapSizeSlider;
+    public Slider objectCountSlider;
 
     // Handle the event when clicking the Start button
     public void clickStartButton()
@@ -20,6 +24,8 @@ public class MainMenuController : MonoBehaviour
     {
         optionsMenu.SetActive(true);
         mainMenu.SetActive(false);
+        mapSizeSlider.value = EnvironmentSettings.mapSliderValue;
+        objectCountSlider.value = EnvironmentSettings.objectSliderValue;
     }
 
     // Handle the event when clicking the Back button
