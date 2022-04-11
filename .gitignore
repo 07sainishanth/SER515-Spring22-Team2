@@ -11,6 +11,13 @@ RoverInterface/Packages/
 RoverInterface/Temp/
 RoverInterface/UserSettings/
 
+RoverChassisDesign_2/Library/
+RoverChassisDesign_2/Logs/
+RoverChassisDesign_2/Packages/
+RoverChassisDesign_2/Temp/
+RoverChassisDesign_2/UserSettings/
+
+
 *.DS_Store
 *.pyc
 __pycache__/
