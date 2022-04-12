@@ -15,3 +15,6 @@ RoverInterface/UserSettings/
 *.pyc
 __pycache__/
 
+.vs/
+.idea/
+.vscode/
