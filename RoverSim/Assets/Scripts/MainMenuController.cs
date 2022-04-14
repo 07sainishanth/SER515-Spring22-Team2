@@ -10,7 +10,9 @@ public class MainMenuController : MonoBehaviour
     public GameObject mainMenu;
     public GameObject optionsMenu;
     public Slider mapSizeSlider;
-    public Slider objectCountSlider;
+    public Slider pyramidCountSlider;
+    public Slider monolithCountSlider;
+    public Slider boulderCountSlider;
 
     // Handle the event when clicking the Start button
     public void clickStartButton()
@@ -25,7 +27,9 @@ public class MainMenuController : MonoBehaviour
         optionsMenu.SetActive(true);
         mainMenu.SetActive(false);
         mapSizeSlider.value = EnvironmentSettings.mapSliderValue;
-        objectCountSlider.value = EnvironmentSettings.objectSliderValue;
+        pyramidCountSlider.value = EnvironmentSettings.pyramidCountValue;
+        monolithCountSlider.value = EnvironmentSettings.monolithCountValue;
+        boulderCountSlider.value = EnvironmentSettings.boulderCountValue;
     }
 
     // Handle the event when clicking the Back button

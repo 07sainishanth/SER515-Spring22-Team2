@@ -22,7 +22,9 @@ public class EnvironmentSettings : MonoBehaviour
     public static int meteorCount = 1;
     public static int waterCount = 1;
     public static float mapSliderValue;
-    public static float objectSliderValue;
+    public static float pyramidCountValue;
+    public static float monolithCountValue;
+    public static float boulderCountValue;
     public static bool water = true;
     
     public enum Robot { TURTLEBOT, GOPIGO, P_DESTROYER }
@@ -40,15 +42,26 @@ public class EnvironmentSettings : MonoBehaviour
      * This method is used for setting the number of physical objects that will appear
      * in the navigation scene.
      */
-    public static void setObjectCounts(float v)
+    public static void setPyramidCount(float v)
     {
         spaceObjectCount = (int) (v * Random.Range(1, 4) * scaleX * scaleZ / 120);
         pyramidCount = (int) (v * Random.Range(1, 2) * scaleX * scaleZ / 180);
         largeBoulderCount = (int) (v * Random.Range(1, 3) * scaleX * scaleZ / 240);
-        colossalBoulderCount = (int) (v * Random.Range(1, 2) * scaleX * scaleZ / 480);
-        spaceMonolithCount = (int)(v * Random.Range(1, 2) * scaleX * scaleZ / 320);
-        meteorCount = 0; // Implement later
+        
+        
+
         waterCount = (int)(v * Random.Range(1, 2) * scaleX * scaleZ / 480);
-        objectSliderValue = v;        
+        pyramidCountValue = v;        
+    }
+
+    public static void setMonolithCount(float v) {
+        spaceMonolithCount = (int)(v * Random.Range(1, 2) * scaleX * scaleZ / 320);
+        monolithCountValue = v;
+    }
+
+    public static void setBoulderCount(float v) {
+        largeBoulderCount = (int) (v * Random.Range(1, 3) * scaleX * scaleZ / 240);
+        colossalBoulderCount = (int) (v * Random.Range(1, 2) * scaleX * scaleZ / 480);
+        boulderCountValue = v;
     }
 }
