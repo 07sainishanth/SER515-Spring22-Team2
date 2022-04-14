@@ -113,10 +113,11 @@ public class ObjectPlacer : MonoBehaviour
         //Place the rover
         {
             float xPos = Random.Range(-5 * EnvironmentSettings.scaleX, 5 * EnvironmentSettings.scaleX);
-            float yPos = 0.0f;
+            float yPos = 1.0f;
             float zPos = Random.Range(-5 * EnvironmentSettings.scaleZ, 5 * EnvironmentSettings.scaleZ);
             pos = new Vector3(xPos, yPos, zPos);
-            Instantiate(rover, pos, rot).SetActive(true);
+            rover.transform.position = pos;
+            Debug.Log(xPos);
         }
     }
 

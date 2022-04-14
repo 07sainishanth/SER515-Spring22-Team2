@@ -46,7 +46,6 @@ public class FloorBuilder : MonoBehaviour
         int xTiles = (int) System.Math.Round(EnvironmentSettings.scaleX / floor.transform.localScale.x);
         int zTiles = (int) System.Math.Round(EnvironmentSettings.scaleZ / floor.transform.localScale.z);
         Quaternion rot = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
-        Vector3 quarterScale = new Vector3(0.2f, 1.0f, 0.2f);
 
         float xStart = -xTiles + 1;
         float zStart = zTiles - 1;
@@ -77,7 +76,7 @@ public class FloorBuilder : MonoBehaviour
                     float zPos = zStart - z * 2;
                     Vector3 pos = new Vector3(xPos, 0.0f, zPos);
                     Instantiate(floor, pos, rot).SetActive(true);
-                    pos = new Vector3(xPos, 0.1f, zPos);
+                    pos = new Vector3(xPos, 0.01f, zPos);
                     Instantiate(sand, pos, rot).SetActive(true);
                 }
             }
@@ -159,7 +158,7 @@ public class FloorBuilder : MonoBehaviour
         {
             float xPos = xStart + waterX[i] * 2;
             float zPos = zStart - waterZ[i] * 2;
-            Instantiate(water, new Vector3(xPos + 3.0f, 0.1f, zPos - 3.0f), rot).SetActive(true);
+            Instantiate(water, new Vector3(xPos + 3.0f, 0.01f, zPos - 3.0f), rot).SetActive(true);
             Instantiate(subfloor, new Vector3(xPos + 3.0f, -8.0f, zPos - 3.0f), rot).SetActive(true);
             Instantiate(northSubWall, new Vector3(xPos + 3.0f, -4.0f, zPos + 1.0f), new Quaternion(-1.0f, 0.0f, 0.0f, 1.0f)).SetActive(true);
             Instantiate(eastSubWall, new Vector3(xPos + 7.0f, -4.0f, zPos - 3.0f), new Quaternion(0.0f, 0.0f, 1.0f, 1.0f)).SetActive(true);

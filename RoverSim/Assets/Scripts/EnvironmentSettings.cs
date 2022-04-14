@@ -12,8 +12,8 @@ public class EnvironmentSettings : MonoBehaviour
 {
     public const float BASE_VALUE = 4.0f;
     
-    public static float scaleX = BASE_VALUE;
-    public static float scaleZ = BASE_VALUE;
+    public static float scaleX = BASE_VALUE * 3.0f;
+    public static float scaleZ = BASE_VALUE * 3.0f;
     public static float spaceObjectCount = 4;
     public static int pyramidCount = 1;
     public static int largeBoulderCount = 2;
@@ -23,6 +23,9 @@ public class EnvironmentSettings : MonoBehaviour
     public static int waterCount = 1;
     public static float mapSliderValue;
     public static float objectSliderValue;
+    
+    public enum Robot { TURTLEBOT, GOPIGO }
+    public static Robot robot = Robot.TURTLEBOT;
 
     // This method is used for setting the scale based on the value of the slider.
     public static void setScale(float v)
