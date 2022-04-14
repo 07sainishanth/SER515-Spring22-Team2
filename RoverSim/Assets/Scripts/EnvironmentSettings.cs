@@ -23,8 +23,9 @@ public class EnvironmentSettings : MonoBehaviour
     public static int waterCount = 1;
     public static float mapSliderValue;
     public static float objectSliderValue;
+    public static bool water = true;
     
-    public enum Robot { TURTLEBOT, GOPIGO }
+    public enum Robot { TURTLEBOT, GOPIGO, P_DESTROYER }
     public static Robot robot = Robot.TURTLEBOT;
 
     // This method is used for setting the scale based on the value of the slider.

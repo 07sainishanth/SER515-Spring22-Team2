@@ -53,6 +53,21 @@ public class MainMenuController : MonoBehaviour
             case 1:
                 EnvironmentSettings.robot = EnvironmentSettings.Robot.GOPIGO;
                 break;
+            case 2:
+                EnvironmentSettings.robot = EnvironmentSettings.Robot.P_DESTROYER;
+                break;
+        }
+    }
+
+    public void toggleWater(bool sel)
+    {
+        if (sel)
+        {
+            EnvironmentSettings.water = true;
+        }
+        else
+        {
+            EnvironmentSettings.water = false;
         }
     }
 }

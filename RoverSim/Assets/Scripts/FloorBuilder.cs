@@ -22,7 +22,6 @@ public class FloorBuilder : MonoBehaviour
     public GameObject eastSubWall;
     public GameObject southSubWall;
     public GameObject westSubWall;
-    public GameObject waterFeature;
 
     Vector3 floorScale;
     Vector3 sandScale;
@@ -37,94 +36,114 @@ public class FloorBuilder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /*
-        floorScale = new Vector3(EnvironmentSettings.scaleX + 0.4f, 1.0f, EnvironmentSettings.scaleZ + 0.4f);
-        sandScale = new Vector3(EnvironmentSettings.scaleX, 1.0f, EnvironmentSettings.scaleZ);
-        floor.transform.localScale = floorScale;
-        sand.transform.localScale = sandScale;
-        */
-        int xTiles = (int) System.Math.Round(EnvironmentSettings.scaleX / floor.transform.localScale.x);
-        int zTiles = (int) System.Math.Round(EnvironmentSettings.scaleZ / floor.transform.localScale.z);
-        Quaternion rot = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
-
-        float xStart = -xTiles + 1;
-        float zStart = zTiles - 1;
-
-        int[] waterX = new int[EnvironmentSettings.waterCount];
-        int[] waterZ = new int[EnvironmentSettings.waterCount];
-        for (int i = 0; i < EnvironmentSettings.waterCount; i++)
+        if (!EnvironmentSettings.water)
         {
-            waterX[i] = (int) Mathf.Round(Random.Range(0.0f, xTiles - 4.0f));
-            waterZ[i] = (int) Mathf.Round(Random.Range(0.0f, zTiles - 4.0f));
+            floor.SetActive(true);
+            sand.SetActive(true);
+            floorScale = new Vector3(EnvironmentSettings.scaleX + 0.4f, 1.0f, EnvironmentSettings.scaleZ + 0.4f);
+            sandScale = new Vector3(EnvironmentSettings.scaleX, 1.0f, EnvironmentSettings.scaleZ);
+            floor.transform.localScale = floorScale;
+            sand.transform.localScale = sandScale;
         }
-
-        for (int z = 0; z < zTiles; z++)
+        else
         {
-            for (int x = 0; x < xTiles; x++)
-            {
-                // Check if x and z are a water space
-                bool waterSpace = false;
-                for (int i = 0; i < waterX.Length; i++)
-                {
-                    waterSpace |= (x == waterX[i] | x == waterX[i] + 1 | x == waterX[i] + 2 | x == waterX[i] + 3) 
-                        && (z == waterZ[i] | z == waterZ[i] + 1 | z == waterZ[i] + 2 | z == waterZ[i] + 3);
-                }
+            int xTiles = (int)System.Math.Round(EnvironmentSettings.scaleX / floor.transform.localScale.x);
+            int zTiles = (int)System.Math.Round(EnvironmentSettings.scaleZ / floor.transform.localScale.z);
+            Quaternion rot = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
 
-                if (!waterSpace) // Add sand if not water space
+            float xStart = -xTiles + 1;
+            float zStart = zTiles - 1;
+
+            int[] waterX = new int[EnvironmentSettings.waterCount];
+            int[] waterZ = new int[EnvironmentSettings.waterCount];
+            for (int i = 0; i < EnvironmentSettings.waterCount; i++)
+            {
+                waterX[i] = (int)Mathf.Round(Random.Range(0.0f, xTiles - 4.0f));
+                waterZ[i] = (int)Mathf.Round(Random.Range(0.0f, zTiles - 4.0f));
+            }
+
+            for (int z = 0; z < zTiles; z++)
+            {
+                for (int x = 0; x < xTiles; x++)
                 {
-                    float xPos = xStart + x * 2;
-                    float zPos = zStart - z * 2;
-                    Vector3 pos = new Vector3(xPos, 0.0f, zPos);
-                    Instantiate(floor, pos, rot).SetActive(true);
-                    pos = new Vector3(xPos, 0.01f, zPos);
-                    Instantiate(sand, pos, rot).SetActive(true);
+                    // Check if x and z are a water space
+                    bool waterSpace = false;
+                    for (int i = 0; i < waterX.Length; i++)
+                    {
+                        waterSpace |= (x == waterX[i] | x == waterX[i] + 1 | x == waterX[i] + 2 | x == waterX[i] + 3)
+                            && (z == waterZ[i] | z == waterZ[i] + 1 | z == waterZ[i] + 2 | z == waterZ[i] + 3);
+                    }
+
+                    if (!waterSpace) // Add sand if not water space
+                    {
+                        float xPos = xStart + x * 2;
+                        float zPos = zStart - z * 2;
+                        Vector3 pos = new Vector3(xPos, 0.0f, zPos);
+                        Instantiate(floor, pos, rot).SetActive(true);
+                        pos = new Vector3(xPos, 0.01f, zPos);
+                        Instantiate(sand, pos, rot).SetActive(true);
+                    }
                 }
             }
-        }
 
-        // Place floor tiles underneath north perimeter wall
-        xStart = -xTiles - 1;
-        zStart = zTiles + 1;
-        for (int x = 0; x < xTiles + 2; x++) 
-        {
-            float xPos = xStart + x * 2;
-            float zPos = zStart;
-            Vector3 pos = new Vector3(xPos, 0.0f, zPos);
-            Instantiate(floor, pos, rot).SetActive(true);
-        }
+            // Place floor tiles underneath north perimeter wall
+            xStart = -xTiles - 1;
+            zStart = zTiles + 1;
+            for (int x = 0; x < xTiles + 2; x++)
+            {
+                float xPos = xStart + x * 2;
+                float zPos = zStart;
+                Vector3 pos = new Vector3(xPos, 0.0f, zPos);
+                Instantiate(floor, pos, rot).SetActive(true);
+            }
 
-        // Place floor tiles underneath east perimeter wall
-        xStart = xTiles + 1;
-        for (int z = 0; z < zTiles + 2; z++)
-        {
-            float xPos = xStart;
-            float zPos = zStart - z * 2;
-            Vector3 pos = new Vector3(xPos, 0.0f, zPos);
-            Instantiate(floor, pos, rot).SetActive(true);
-        }
+            // Place floor tiles underneath east perimeter wall
+            xStart = xTiles + 1;
+            for (int z = 0; z < zTiles + 2; z++)
+            {
+                float xPos = xStart;
+                float zPos = zStart - z * 2;
+                Vector3 pos = new Vector3(xPos, 0.0f, zPos);
+                Instantiate(floor, pos, rot).SetActive(true);
+            }
 
-        // Place floor tiles underneath south perimeter wall
-        xStart = xTiles - 1;
-        zStart = -zTiles - 1;
-        for (int x = 0; x < xTiles + 1; x++)
-        {
-            float xPos = xStart - x * 2;
-            float zPos = zStart;
-            Vector3 pos = new Vector3(xPos, 0.0f, zPos);
-            Instantiate(floor, pos, rot).SetActive(true);
-        }
+            // Place floor tiles underneath south perimeter wall
+            xStart = xTiles - 1;
+            zStart = -zTiles - 1;
+            for (int x = 0; x < xTiles + 1; x++)
+            {
+                float xPos = xStart - x * 2;
+                float zPos = zStart;
+                Vector3 pos = new Vector3(xPos, 0.0f, zPos);
+                Instantiate(floor, pos, rot).SetActive(true);
+            }
 
-        // Place floor tiles underneath west perimeter wall
-        xStart = -xTiles - 1;
-        zStart = -zTiles + 1;
-        for (int z = 0; z < zTiles; z++)
-        {
-            float xPos = xStart;
-            float zPos = zStart + z * 2;
-            Vector3 pos = new Vector3(xPos, 0.0f, zPos);
-            Instantiate(floor, pos, rot).SetActive(true);
-        }
+            // Place floor tiles underneath west perimeter wall
+            xStart = -xTiles - 1;
+            zStart = -zTiles + 1;
+            for (int z = 0; z < zTiles; z++)
+            {
+                float xPos = xStart;
+                float zPos = zStart + z * 2;
+                Vector3 pos = new Vector3(xPos, 0.0f, zPos);
+                Instantiate(floor, pos, rot).SetActive(true);
+            }
 
+            // Build the water features
+            xStart = -xTiles + 1;
+            zStart = zTiles - 1;
+            for (int i = 0; i < waterX.Length; i++)
+            {
+                float xPos = xStart + waterX[i] * 2;
+                float zPos = zStart - waterZ[i] * 2;
+                Instantiate(water, new Vector3(xPos + 3.0f, 0.01f, zPos - 3.0f), rot).SetActive(true);
+                Instantiate(subfloor, new Vector3(xPos + 3.0f, -8.0f, zPos - 3.0f), rot).SetActive(true);
+                Instantiate(northSubWall, new Vector3(xPos + 3.0f, -4.0f, zPos + 1.0f), new Quaternion(-1.0f, 0.0f, 0.0f, 1.0f)).SetActive(true);
+                Instantiate(eastSubWall, new Vector3(xPos + 7.0f, -4.0f, zPos - 3.0f), new Quaternion(0.0f, 0.0f, 1.0f, 1.0f)).SetActive(true);
+                Instantiate(southSubWall, new Vector3(xPos + 3.0f, -4.0f, zPos - 7.0f), new Quaternion(1.0f, 0.0f, 0.0f, 1.0f)).SetActive(true);
+                Instantiate(westSubWall, new Vector3(xPos - 1.0f, -4.0f, zPos - 3.0f), new Quaternion(0.0f, 0.0f, -1.0f, 1.0f)).SetActive(true);
+            }
+        }
 
         north_southWallScale = new Vector3(10 * EnvironmentSettings.scaleX, 8.0f, 2.0f);
         northWall.transform.localScale = north_southWallScale;
@@ -150,21 +169,6 @@ public class FloorBuilder : MonoBehaviour
         westWallPos = new Vector3(-5 * EnvironmentSettings.scaleX - 1.0f, 4.0f, 0.0f);
         westWall.transform.position = westWallPos;
         westWall.GetComponent<Rigidbody>().mass = 2.0f * 8.0f * EnvironmentSettings.scaleZ + 64.0f;
-
-        // Build the water features
-        xStart = -xTiles + 1;
-        zStart = zTiles - 1;
-        for (int i = 0; i < waterX.Length; i++)
-        {
-            float xPos = xStart + waterX[i] * 2;
-            float zPos = zStart - waterZ[i] * 2;
-            Instantiate(water, new Vector3(xPos + 3.0f, 0.01f, zPos - 3.0f), rot).SetActive(true);
-            Instantiate(subfloor, new Vector3(xPos + 3.0f, -8.0f, zPos - 3.0f), rot).SetActive(true);
-            Instantiate(northSubWall, new Vector3(xPos + 3.0f, -4.0f, zPos + 1.0f), new Quaternion(-1.0f, 0.0f, 0.0f, 1.0f)).SetActive(true);
-            Instantiate(eastSubWall, new Vector3(xPos + 7.0f, -4.0f, zPos - 3.0f), new Quaternion(0.0f, 0.0f, 1.0f, 1.0f)).SetActive(true);
-            Instantiate(southSubWall, new Vector3(xPos + 3.0f, -4.0f, zPos - 7.0f), new Quaternion(1.0f, 0.0f, 0.0f, 1.0f)).SetActive(true);
-            Instantiate(westSubWall, new Vector3(xPos - 1.0f, -4.0f, zPos - 3.0f), new Quaternion(0.0f, 0.0f, -1.0f, 1.0f)).SetActive(true);
-        }
     }
 
     // Update is called once per frame

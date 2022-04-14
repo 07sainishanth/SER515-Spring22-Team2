@@ -37,7 +37,7 @@ public class MovementController : MonoBehaviour
         {
             cameraRig.transform.position = rover.transform.position;
 
-            if (Input.GetKeyDown(KeyCode.F)) // Switch cameras by pressing the 'F' Key
+            if (Input.GetKeyDown(KeyCode.F) && EnvironmentSettings.robot == EnvironmentSettings.Robot.P_DESTROYER) // Switch cameras by pressing the 'F' Key
             {
                 if (mainCamera.activeInHierarchy)
                 {
