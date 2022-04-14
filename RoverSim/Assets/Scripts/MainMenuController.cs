@@ -41,4 +41,18 @@ public class MainMenuController : MonoBehaviour
         Debug.Log("Quitting...");
         Application.Quit();
     }
+
+    // Handle the event when selecting the robot model
+    public void selectRobot(int sel)
+    {
+        switch (sel)
+        {
+            case 0:
+                EnvironmentSettings.robot = EnvironmentSettings.Robot.TURTLEBOT;
+                break;
+            case 1:
+                EnvironmentSettings.robot = EnvironmentSettings.Robot.GOPIGO;
+                break;
+        }
+    }
 }

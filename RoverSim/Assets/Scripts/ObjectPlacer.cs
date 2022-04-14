@@ -16,6 +16,8 @@ public class ObjectPlacer : MonoBehaviour
     public GameObject spaceMonolith;
     public GameObject rover;
     public GameObject navText;
+    public GameObject turtlebot;
+    public GameObject gopigo;
 
     int frameCounter;
 
@@ -110,7 +112,7 @@ public class ObjectPlacer : MonoBehaviour
             Instantiate(spaceMonolith, pos, rot).SetActive(true);
         }
 
-        //Place the rover
+        // Place the rover
         {
             float xPos = Random.Range(-5 * EnvironmentSettings.scaleX, 5 * EnvironmentSettings.scaleX);
             float yPos = 1.0f;
@@ -118,6 +120,19 @@ public class ObjectPlacer : MonoBehaviour
             pos = new Vector3(xPos, yPos, zPos);
             rover.transform.position = pos;
             Debug.Log(xPos);
+        }
+
+        // Select the model
+        switch (EnvironmentSettings.robot)
+        {
+            case EnvironmentSettings.Robot.TURTLEBOT:
+                turtlebot.SetActive(true);
+                gopigo.SetActive(false);
+                break;
+            case EnvironmentSettings.Robot.GOPIGO:
+                turtlebot.SetActive(false);
+                gopigo.SetActive(true);
+                break;
         }
     }
 
