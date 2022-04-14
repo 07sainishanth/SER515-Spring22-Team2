@@ -13,6 +13,8 @@ public class MainMenuController : MonoBehaviour
     public Slider pyramidCountSlider;
     public Slider monolithCountSlider;
     public Slider boulderCountSlider;
+    public Slider spaceDebrisSlider;
+    public Slider waterFeatureSlider;
 
     // Handle the event when clicking the Start button
     public void clickStartButton()
@@ -30,6 +32,8 @@ public class MainMenuController : MonoBehaviour
         pyramidCountSlider.value = EnvironmentSettings.pyramidCountValue;
         monolithCountSlider.value = EnvironmentSettings.monolithCountValue;
         boulderCountSlider.value = EnvironmentSettings.boulderCountValue;
+        spaceDebrisSlider.value = EnvironmentSettings.spaceDebrisValue;
+        waterFeatureSlider.value = EnvironmentSettings.waterFeatureValue;
     }
 
     // Handle the event when clicking the Back button

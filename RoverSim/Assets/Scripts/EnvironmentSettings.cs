@@ -25,6 +25,8 @@ public class EnvironmentSettings : MonoBehaviour
     public static float pyramidCountValue;
     public static float monolithCountValue;
     public static float boulderCountValue;
+    public static float spaceDebrisValue;
+    public static float waterFeatureValue;
     public static bool water = true;
     
     public enum Robot { TURTLEBOT, GOPIGO, P_DESTROYER }
@@ -43,14 +45,8 @@ public class EnvironmentSettings : MonoBehaviour
      * in the navigation scene.
      */
     public static void setPyramidCount(float v)
-    {
-        spaceObjectCount = (int) (v * Random.Range(1, 4) * scaleX * scaleZ / 120);
+    {    
         pyramidCount = (int) (v * Random.Range(1, 2) * scaleX * scaleZ / 180);
-        largeBoulderCount = (int) (v * Random.Range(1, 3) * scaleX * scaleZ / 240);
-        
-        
-
-        waterCount = (int)(v * Random.Range(1, 2) * scaleX * scaleZ / 480);
         pyramidCountValue = v;        
     }
 
@@ -60,8 +56,18 @@ public class EnvironmentSettings : MonoBehaviour
     }
 
     public static void setBoulderCount(float v) {
-        largeBoulderCount = (int) (v * Random.Range(1, 3) * scaleX * scaleZ / 240);
-        colossalBoulderCount = (int) (v * Random.Range(1, 2) * scaleX * scaleZ / 480);
+        largeBoulderCount = (int) (v * Random.Range(1, 3) * scaleX * scaleZ / 120);
+        colossalBoulderCount = (int) (v * Random.Range(1, 2) * scaleX * scaleZ / 240);
         boulderCountValue = v;
+    }
+
+    public static void setSpaceDebrisCount(float v) {
+        spaceObjectCount = (int) (v * Random.Range(1, 4) * scaleX * scaleZ / 120);
+        spaceDebrisValue = v;
+    }
+
+    public static void setWaterFeatureCount(float v) {
+        waterCount = (int)(v * Random.Range(1, 2) * scaleX * scaleZ / 240);
+        waterFeatureValue = v;
     }
 }
