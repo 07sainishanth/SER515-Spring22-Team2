@@ -363,7 +363,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &407226546 stripped
 Transform:
@@ -654,13 +654,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 553668156}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 15.69, y: 10.15, z: -1}
-  m_LocalScale: {x: 2.0798001, y: 2, z: 2}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: 7.779999, y: 17.74, z: -2.16}
+  m_LocalScale: {x: 4.1596003, y: 4, z: 4}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_Father: {fileID: 590742415}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
 --- !u!1 &590742410
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,6 +776,7 @@ Transform:
   - {fileID: 963194228}
   - {fileID: 705507995}
   - {fileID: 550976791}
+  - {fileID: 553668159}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -795,7 +796,7 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 55
-  cam: {fileID: 963194228}
+  cam: {fileID: 550976791}
 --- !u!4 &608640791 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6590951787245859612, guid: efac85bf63a0b074c84d4b2f687fa12c, type: 3}
@@ -2343,7 +2344,7 @@ RectTransform:
   - {fileID: 1257762906}
   - {fileID: 797523278}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
