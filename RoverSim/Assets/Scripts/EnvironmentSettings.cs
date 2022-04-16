@@ -12,8 +12,8 @@ public class EnvironmentSettings : MonoBehaviour
 {
     public const float BASE_VALUE = 4.0f;
     
-    public static float scaleX = BASE_VALUE;
-    public static float scaleZ = BASE_VALUE;
+    public static float scaleX = BASE_VALUE * 3.0f;
+    public static float scaleZ = BASE_VALUE * 3.0f;
     public static float spaceObjectCount = 4;
     public static int pyramidCount = 1;
     public static int largeBoulderCount = 2;
@@ -21,28 +21,53 @@ public class EnvironmentSettings : MonoBehaviour
     public static int spaceMonolithCount = 1;
     public static int meteorCount = 1;
     public static int waterCount = 1;
+    public static float mapSliderValue;
+    public static float pyramidCountValue;
+    public static float monolithCountValue;
+    public static float boulderCountValue;
+    public static float spaceDebrisValue;
+    public static float waterFeatureValue;
+    public static bool water = true;
+    
+    public enum Robot { TURTLEBOT, GOPIGO, P_DESTROYER }
+    public static Robot robot = Robot.TURTLEBOT;
 
     // This method is used for setting the scale based on the value of the slider.
     public static void setScale(float v)
     {
         scaleX = BASE_VALUE + (float) System.Math.Round(v) * Random.Range(1, 5);
-        Debug.Log("X-scale: " + scaleX);
         scaleZ = BASE_VALUE + (float) System.Math.Round(v) * Random.Range(1, 5);
-        Debug.Log("Z-scale: " + scaleZ);
+        mapSliderValue = v;
     }
 
     /*
      * This method is used for setting the number of physical objects that will appear
      * in the navigation scene.
      */
-    public static void setObjectCounts(float v)
-    {
-        spaceObjectCount = (int) (v * Random.Range(1, 4) * scaleX * scaleZ / 32);
-        pyramidCount = (int) (v * Random.Range(1, 2) * scaleX * scaleZ / 240);
-        largeBoulderCount = (int) (v * Random.Range(1, 3) * scaleX * scaleZ / 240);
-        colossalBoulderCount = (int) (v * Random.Range(1, 2) * scaleX * scaleZ / 480);
+    public static void setPyramidCount(float v)
+    {    
+        pyramidCount = (int) (v * Random.Range(1, 2) * scaleX * scaleZ / 180);
+        pyramidCountValue = v;        
+    }
+
+    public static void setMonolithCount(float v) {
         spaceMonolithCount = (int)(v * Random.Range(1, 2) * scaleX * scaleZ / 320);
-        meteorCount = 0; // Implement later
-        waterCount = (int)(v * Random.Range(1, 2) * scaleX * scaleZ / 480);
+        monolithCountValue = v;
+    }
+
+    public static void setBoulderCount(float v) {
+        largeBoulderCount = (int) (v * Random.Range(1, 3) * scaleX * scaleZ / 120);
+        colossalBoulderCount = (int) (v * Random.Range(1, 2) * scaleX * scaleZ / 240);
+        boulderCountValue = v;
+    }
+
+    public static void setSpaceDebrisCount(float v) {
+        spaceObjectCount = (int) (v * Random.Range(1, 4) * scaleX * scaleZ / 120);
+        spaceDebrisValue = v;
+    }
+
+    public static void setWaterFeatureCount(float v) {
+        waterCount = (int)(v * Random.Range(1, 2) * scaleX * scaleZ / 240);
+        waterFeatureValue = v;
     }
 }

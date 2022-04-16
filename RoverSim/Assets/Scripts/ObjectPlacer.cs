@@ -14,7 +14,14 @@ public class ObjectPlacer : MonoBehaviour
     public GameObject largeBoulder;
     public GameObject colossalBoulder;
     public GameObject spaceMonolith;
-    public GameObject rover;
+    public GameObject navText;
+    public GameObject turtlebot;
+    public GameObject gopigo;
+    public GameObject pDestroyer;
+    public GameObject cameraRig;
+
+    int frameCounter;
+    GameObject rover;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +36,7 @@ public class ObjectPlacer : MonoBehaviour
             float zPos = Random.Range(-5 * EnvironmentSettings.scaleZ, 5 * EnvironmentSettings.scaleZ);
             pos = new Vector3(xPos, yPos, zPos);
             Instantiate(spaceObject, pos, rot).SetActive(true);
+            frameCounter = 0;
         }
 
         PyramidBuilder.block = block;
@@ -106,19 +114,58 @@ public class ObjectPlacer : MonoBehaviour
             Instantiate(spaceMonolith, pos, rot).SetActive(true);
         }
 
-        for (int i = 0; i < EnvironmentSettings.pyramidCount; i++)
+        // Select the model
+        switch (EnvironmentSettings.robot)
         {
-            float xPos = Random.Range(-5 * EnvironmentSettings.scaleX, 5 * EnvironmentSettings.scaleX);
-            float yPos = 0.0f;
-            float zPos = Random.Range(-5 * EnvironmentSettings.scaleZ, 5 * EnvironmentSettings.scaleZ);
-            pos = new Vector3(xPos, yPos, zPos);
-            Instantiate(rover, pos, rot).SetActive(true);
+            case EnvironmentSettings.Robot.TURTLEBOT:
+                turtlebot.SetActive(true);
+                gopigo.SetActive(false);
+                pDestroyer.SetActive(false);
+                cameraRig.SetActive(false);
+                rover = turtlebot;
+                break;
+            case EnvironmentSettings.Robot.GOPIGO:
+                turtlebot.SetActive(false);
+                gopigo.SetActive(true);
+                pDestroyer.SetActive(false);
+                cameraRig.SetActive(false);
+                rover = gopigo;
+                break;
+            case EnvironmentSettings.Robot.P_DESTROYER:
+                turtlebot.SetActive(false);
+                gopigo.SetActive(false);
+                pDestroyer.SetActive(true);
+                cameraRig.SetActive(true);
+                rover = pDestroyer;
+                break;
         }
+
+        // Randomly place the rover if pDestroyer
+        {
+            if (EnvironmentSettings.robot == EnvironmentSettings.Robot.P_DESTROYER)
+            {
+
+                float xPos = Random.Range(-5 * EnvironmentSettings.scaleX, 5 * EnvironmentSettings.scaleX);
+                float yPos = 1.0f;
+                float zPos = Random.Range(-5 * EnvironmentSettings.scaleZ, 5 * EnvironmentSettings.scaleZ);
+                pos = new Vector3(xPos, yPos, zPos);
+                rover.transform.position = pos;
+            }
+        }
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (frameCounter < 180)
+        {
+            frameCounter++;
+                if (frameCounter == 180)
+            {
+                navText.SetActive(false);
+            }
+        }
     }
 }
